@@ -1,161 +1,189 @@
-/* Reset & Base */
-* {
+:root {
+  --bg-light: #f4f4f4;
+  --text-light: #222;
+  --bg-dark: #1e1e1e;
+  --text-dark: #f0f0f0;
+
+  --accent: #00bcd4;
+  --accent-dark: #0097a7;
+  --progress-bg: rgba(255,255,255,0.2);
+}
+
+[data-theme="light"] {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+[data-theme="dark"] {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
 }
 
-/* Header */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 .brand {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.2rem;
 }
 .tagline {
-  font-size: 1rem;
-  color: #ccc;
+  color: #888;
 }
 
-/* Container */
 .container {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
 }
 
-/* Input Section */
-.input-section {
+.form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 2rem;
 }
-input[type="datetime-local"] {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: none;
-}
-button {
+.form input,
+.form button {
   padding: 0.7rem;
-  background-color: #00bcd4;
-  color: white;
   border: none;
   border-radius: 6px;
+  font-size: 1rem;
+}
+.form input {
+  background-color: #fff;
+  color: #000;
+}
+.form button {
+  background-color: var(--accent);
+  color: white;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background 0.3s, transform 0.2s;
 }
-button:hover {
-  background-color: #0097a7;
+.form button:hover {
+  background-color: var(--accent-dark);
+  transform: scale(1.02);
 }
 
-/* Countdown Display */
-.countdown-display {
+.timers-list {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  text-align: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+.timer-card {
+  position: relative;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 1.2rem;
+  animation: fadeInUp 0.5s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.timer-card.removing {
+  animation: fadeOutDown 0.4s ease forwards;
 }
 
-.time-box {
-  flex: 1;
-  background: rgba(255,255,255,0.1);
-  padding: 1rem;
-  border-radius: 8px;
-  animation: fadeIn 0.6s ease-out;
-  transition: transform 0.3s ease;
-
+.timer-card h3 {
+  margin: 0 0 0.5rem;
 }
-.time-box span {
-  font-size: 2rem;
+
+.timer-time {
+  font-size: 1.4rem;
   font-weight: bold;
 }
-.time-box label {
-  display: block;
-  margin-top: 0.5rem;
+
+.timer-end {
   font-size: 0.9rem;
-  color: #ccc;
+  color: #bbb;
 }
 
-/* Message */
-.message {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 1.2rem;
+.timer-message {
   color: #ffeb3b;
+  margin-top: 0.5rem;
+  font-weight: bold;
 }
 
-/* add media queries for optimise display*/
-/* Ultra-small screens: ≤ 375px */
-@media (max-width: 375px) {
-  body {
-    padding: 1rem;
-  }
+.action-buttons {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.6rem;
+}
 
-  .brand {
-    font-size: 1.8rem;
-  }
+.action-buttons button {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.action-buttons button:hover {
+  transform: scale(1.1);
+}
+.pause-btn {
+  background-color: #ffca28;
+  color: #222;
+}
+.delete-btn {
+  background-color: #e53935;
+  color: #fff;
+}
 
-  .tagline {
-    font-size: 0.85rem;
-  }
+/* Progress ring */
+.progress-ring {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 80px;
+  height: 80px;
+  transform: rotate(-90deg);
+}
+.progress-ring circle {
+  fill: transparent;
+  stroke-width: 6;
+  transition: stroke-dashoffset 0.5s linear;
+  transform-origin: 50% 50%;
+}
+.progress-ring .bg-circle {
+  stroke: var(--progress-bg);
+}
+.progress-ring .fg-circle {
+  stroke: var(--accent);
+}
 
-  .container {
-    padding: 1rem;
-    width: 100%;
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .input-section {
-    gap: 0.5rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  input[type="datetime-local"],
-  button {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-
-  .countdown-display {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .time-box span {
-    font-size: 1.5rem;
-  }
-
-  .time-box label {
-    font-size: 0.8rem;
-  }
-
-  .message {
-    font-size: 1rem;
+}
+@keyframes fadeOutDown {
+  to {
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
