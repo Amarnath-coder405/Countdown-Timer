@@ -16,7 +16,7 @@ Tech Stack:
 
 Installation:
 =============
-git clone 
+git clone https://amarnath-coder405.github.io/Countdown-Timer/
 cd countdown-timer
 open index.html
 
