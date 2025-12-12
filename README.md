@@ -28,6 +28,6 @@ Features:
 - Smooth animations and clean UI
 
 Contact:
-=========
+========
 Crafted with precision by Amarnath
 For freelance inquiries or collaborations, feel free to reach out!
