@@ -1,5 +1,5 @@
 Countdown Timer:
-===============
+================
 A responsive and visually polished countdown timer web application built with HTML, CSS, and JavaScript. Users can set a future date and time, and the app dynamically displays the remaining time in days, hours, minutes, and seconds—updating in real time.
 This project showcases clean UI design, modular JavaScript logic, and accessibility best practices. Ideal for event launches, product drops, or personal productivity tools..
 
