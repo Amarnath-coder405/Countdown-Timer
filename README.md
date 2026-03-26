@@ -8,7 +8,7 @@ Live Demo: https://countdown-timer-alpha-seven.vercel.app/
 gitpage link:https://amarnath-coder405.github.io/Countdown-Timer/
 
 
-Tech Stack:
+Tech Stack
 ===========
 - HTML5 & CSS3
 - JavaScript (ES6+)
