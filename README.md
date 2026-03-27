@@ -15,7 +15,7 @@ Tech Stack
 - Responsive Design
 
 Installation:
-=============
+============
 git clone https://amarnath-coder405.github.io/Countdown-Timer/
 cd countdown-timer
 open index.html
