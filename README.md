@@ -21,7 +21,7 @@ cd countdown-timer
 open index.html
 
 Features:
-=========
+========
 - Set custom target date and time
 - Real-time countdown updates
 - Responsive layout for mobile and desktop
